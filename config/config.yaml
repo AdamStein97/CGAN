@@ -1,0 +1,8 @@
+batch_size: 256
+epochs: 200
+model_save_name: "cgan"
+generator_lr: 0.0001
+discriminator_lr: 0.0001
+checkpoint_save_freq: 15
+discriminator_config: "discriminator_config.yaml"
+generator_config: "generator_config.yaml"

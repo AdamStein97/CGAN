@@ -1,8 +1,8 @@
 convolution_layers: 2
 convolution_kernels: 128
-convolution_kernel_size: (3, 3)
+convolution_kernel_size: [3, 3]
 convolution_activation: 'LeakyReLU'
-convolution_stride: (2, 2)
+convolution_stride: [2, 2]
 convolution_padding: 'same'
 labelling_embedding_size: 50
 labelling_encoding_layer_size: 784

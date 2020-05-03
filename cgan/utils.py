@@ -3,6 +3,22 @@ import matplotlib.pyplot as plt
 import numpy as np
 import cgan
 import os
+import yaml
+
+def load_yaml(file_dir):
+    with open(file_dir, 'rb') as file:
+        dict = yaml.load(file, Loader=yaml.FullLoader)
+    return dict
+
+
+def load_config(config_filename='config.yaml'):
+    config = load_yaml(os.path.join(cgan.CONFIG_DIR, config_filename))
+    discriminator_config = load_yaml(os.path.join(cgan.CONFIG_DIR, config['discriminator_config']))
+    generator_config = load_yaml(os.path.join(cgan.CONFIG_DIR, config['generator_config']))
+    config['discriminator_config'] = discriminator_config
+    config['generator_config'] = generator_config
+    return config
+
 
 def generate_image(generator, digit=None, show=True, save_file_name="generated_img.png"):
     if digit is None:

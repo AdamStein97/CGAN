@@ -25,14 +25,21 @@ class Trainer():
         generator_optimizer.apply_gradients(zip(gradients_of_generator, generator.trainable_variables))
         discriminator_optimizer.apply_gradients(zip(gradients_of_discriminator, discriminator.trainable_variables))
 
-    def train(self, dataset, epochs=200, model_name="cgan", generator_lr=1e-4, discriminator_lr=1e-4, checkpoint_save_freq=15):
+    def train(self, dataset, epochs=200, model_save_name="cgan", generator_lr=1e-4, discriminator_lr=1e-4,
+              checkpoint_save_freq=15, discriminator_config=None, generator_config=None, **kwargs):
+
+        if discriminator_config is None:
+            discriminator_config = {}
+        if generator_config is None:
+            generator_config = {}
+
         generator_optimizer = tf.keras.optimizers.Adam(generator_lr)
         discriminator_optimizer = tf.keras.optimizers.Adam(discriminator_lr)
 
-        discriminator = Discriminator()
-        generator = init_generator_model()
+        discriminator = Discriminator(**discriminator_config)
+        generator = init_generator_model(**generator_config)
 
-        checkpoint_prefix = os.path.join(cgan.MODEL_DIR, "{}_final_ckpt".format(model_name))
+        checkpoint_prefix = os.path.join(cgan.MODEL_DIR, "{}_final_ckpt".format(model_save_name))
         checkpoint = tf.train.Checkpoint(generator_optimizer=generator_optimizer,
                                          discriminator_optimizer=discriminator_optimizer,
                                          generator=generator,

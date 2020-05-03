@@ -16,7 +16,7 @@ class Preprocessor():
         normalised_image = (expanded_image - 127.5) / 127.5
         return normalised_image, label
 
-    def get_preprocessed_train_data(self, batch_size=256):
+    def get_preprocessed_train_data(self, batch_size=256, **kwargs):
         (train_images, train_labels) = self._load_data()
         train_dataset = tf.data.Dataset.from_tensor_slices((train_images, train_labels))
         train_dataset = self._preprocess_dataset(train_dataset, batch_size)

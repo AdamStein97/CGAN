@@ -1,14 +1,14 @@
 import tensorflow as tf
 import time as time
 import os
-from cgan.src.model.loss_functions import generator_loss, discriminator_loss
-from cgan.src.model.discriminator import Discriminator
-from cgan.src.model.generator_model import init_generator_model
+from cgan.model.loss_functions import generator_loss, discriminator_loss
+from cgan.model.discriminator import Discriminator
+from cgan.model.generator_model import init_generator_model
 import cgan
 
 class Trainer():
     @tf.function
-    def train_step(self, generator, discriminator, batch, generator_optimizer, discriminator_optimizer):
+    def train_step(self, batch, generator, discriminator, generator_optimizer, discriminator_optimizer):
         images, labels = batch
         with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
             generated_images = generator(labels, training=True)
@@ -42,7 +42,7 @@ class Trainer():
             start = time.time()
 
             for batch in dataset:
-                self.train_step(batch)
+                self.train_step(batch, generator, discriminator, generator_optimizer, discriminator_optimizer)
 
             if (epoch + 1) % checkpoint_save_freq == 0:
                 checkpoint.save(file_prefix=checkpoint_prefix)

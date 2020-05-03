@@ -1,9 +1,9 @@
-from cgan.src.utils import generate_image
+from cgan.utils import generate_image
 import os
 import tensorflow as tf
 import cgan
-from cgan.src.model.discriminator import Discriminator
-from cgan.src.model.generator_model import init_generator_model
+from cgan.model.discriminator import Discriminator
+from cgan.model.generator_model import init_generator_model
 
 discriminator = Discriminator()
 generator = init_generator_model()

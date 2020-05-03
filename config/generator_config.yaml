@@ -1,0 +1,10 @@
+convolution_layers: 2
+convolution_kernels: 128
+convolution_kernel_size: (4, 4)
+convolution_activation: 'LeakyReLU'
+convolution_stride: (2, 2)
+convolution_padding: 'same'
+coding_sample_dim: 100
+coding_embedded_channels: 128
+labelling_embedded_channels: 1
+labelling_embedding_size: 50

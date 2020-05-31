@@ -47,9 +47,9 @@ the conditioned information `y` on the MNIST using a Vanilla GAN [3].
 
 ## 2. Install
 
-Create Environment: `conda create --name cgan`
+Create Environment: `conda create --name cgan python=3.6`
 
-Activate Environment: `activate cgan`
+Activate Environment: `conda activate cgan`
 
 Install Requirements: `pip install -r requirements.txt`
 
